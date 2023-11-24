@@ -53,3 +53,14 @@ def extract_magnet_link(soup):
 
 def extract_book_id(url):
     return url.split('/')[-1]
+
+def extract_number_of_pages(soup):
+    pages_element = soup.find('td', string=lambda text: text and 'Páginas:' in text)
+    if pages_element and pages_element.find_next_sibling('td'):
+        pages_text = pages_element.find_next_sibling('td').text.strip()
+        return ''.join(filter(str.isdigit, pages_text))
+    return "No disponible"
+
+def extract_language(soup):
+    language_element = soup.find('span', class_='txt_blanco')
+    return language_element.text.strip() if language_element else "Idioma no disponible"

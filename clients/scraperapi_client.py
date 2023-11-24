@@ -1,3 +1,4 @@
+# clients/scraperapi_client.py
 
 import requests
 from config.settings import SCRAPER_API_KEY
@@ -7,11 +8,12 @@ class ScraperAPI:
         self.api_endpoint = 'http://api.scraperapi.com'
         self.api_key = SCRAPER_API_KEY
 
-    def get(self, url, **kwargs):
+    def get(self, url):
         payload = {
             'api_key': self.api_key,
             'url': url,
-            **kwargs  # Esto permite agregar parámetros adicionales como 'render'
+            # 'premium': 'true',  
+
         }
         response = requests.get(self.api_endpoint, params=payload)
         return response

@@ -1,10 +1,11 @@
 
 from bs4 import BeautifulSoup
+from numpy import number
 from clients.scraperapi_client import ScraperAPI
 from .extractors import (
     extract_title, extract_authors, extract_genres, 
     extract_synopsis, extract_image, extract_votes, 
-    extract_publication_date, extract_magnet_link, extract_book_id
+    extract_publication_date, extract_magnet_link, extract_book_id, extract_number_of_pages, extract_language
 )
 
 def scrape_book_details(url):
@@ -26,17 +27,22 @@ def scrape_book_details(url):
     magnet_link = extract_magnet_link(soup)
     book_id = extract_book_id(url)
     image_url = extract_image(soup)
+    number_of_pages = extract_number_of_pages(soup)
+    language = extract_language(soup)
 
     book_details = {
-        'id': book_id,
+        'id': int(book_id),
         'title': title,
         'authors': authors,
         'genres': genres,
         'synopsis': synopsis,
-        'votes': votes,
+        'votes': int(votes),
         'publication_date': publication_date,
         'magnet_link': magnet_link,
-        'image_url': image_url
+        'image_url': image_url,
+        'number_of_pages': int(number_of_pages),
+        'language': language
+
     }
 
     return book_details
