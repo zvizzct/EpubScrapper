@@ -35,11 +35,3 @@ This Python program is designed to scrape book details from a specific website a
 
 - Set the `SCRAPER_API_KEY` in `config/settings` for ScraperAPI access.
 - Modify the `start_id` and `end_id` in `main.py` to set the range of book IDs to scrape.
-
-## Contributing
-
-Contributions to improve the program or add new features are welcome. Please adhere to the existing coding style and add unit tests for new functionality.
-
-## License
-
-This project is licensed under [LICENSE_NAME]. Please see the LICENSE file for more details.
